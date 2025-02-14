@@ -5,6 +5,7 @@ const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/features/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
@@ -58,10 +59,10 @@ const config: Config = {
       },
       fontFamily: {
         sans: "var(--font-regular)",
-        bold: "var(--font-bold)",
-        semibold: "var(--font-semibold)",
-        medium: "var(--font-medium)",
-        light: "var(--font-light)",
+        Bold: "var(--font-bold)",
+        Semibold: "var(--font-semibold)",
+        Medium: "var(--font-medium)",
+        Light: "var(--font-light)",
       },
     },
   },
