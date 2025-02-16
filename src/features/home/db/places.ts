@@ -5,6 +5,9 @@ export const getPlaces = async () => {
     headers: {
       "Content-Type": "application/json",
     },
+    next: {
+      tags: ["places"]
+    }
   });
 
   const res = await data.json();
