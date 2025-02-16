@@ -23,7 +23,7 @@ const CardContainer = ({
 
 const Card = ({ place }: CardProps) => {
   return (
-    <article className="w-full aspect-[16/7] bg-muted/10 rounded-lg relative overflow-hidden">
+    <article className="w-full aspect-video md:aspect-[16/7] bg-muted/10 rounded-lg relative overflow-hidden">
       {/* bg image */}
       <div className="absolute top-0 w-full -z-[1]">
         <div className="w-full aspect-video relative overflow-hidden">

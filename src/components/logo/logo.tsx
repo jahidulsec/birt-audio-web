@@ -18,4 +18,17 @@ const Logo = ({ logoTextColor }: { logoTextColor?: string }) => {
   );
 };
 
-export { Logo };
+const LogoImage = () => {
+  return (
+    <div className="relative w-14 aspect-square">
+      <Image
+        src={"/icons/adaptive-icon.png"}
+        fill
+        objectFit="cover"
+        alt="birt-logo"
+      />
+    </div>
+  );
+};
+
+export { Logo, LogoImage };
