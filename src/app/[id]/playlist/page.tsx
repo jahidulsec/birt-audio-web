@@ -35,7 +35,7 @@ export default async function Playlist({
     <div>
       <HeaderWithBack title="Playlist" />
       <main className="flex flex-col gap-6 px-4 sm:px-0 container mx-auto">
-        {data.length > 0 ? (
+        {!err && data.length > 0 ? (
           <>
             <HeroSection imgUrl={data?.[0].place.imgUrl} />
             <PlaylistSection data={data} />

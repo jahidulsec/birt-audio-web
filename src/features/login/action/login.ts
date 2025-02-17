@@ -1,9 +1,7 @@
 "use server";
 
 import { API_URL } from "@/lib/data";
-import { error } from "console";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import { z } from "zod";
 
 const authSchema = z.object({
