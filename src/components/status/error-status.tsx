@@ -10,14 +10,14 @@ import { toast } from "sonner";
 
 const ErrorStatusPage = ({ error }: { error: any }) => {
   const router = useRouter();
-  const [isPending, startTransition] = useTransition()
+  const [isPending, startTransition] = useTransition();
 
   return (
     <section className="flex flex-col justify-center items-center gap-3 min-h-svh w-5/6 mx-auto">
       <div className=" text-muted-foreground/35">
         <Retry size={100} />
       </div>
-      {error.error && (
+      {error.error ? (
         <>
           <p className="text-center  text-muted-foreground">
             This account does not have access for this content. Please sign in
@@ -25,29 +25,31 @@ const ErrorStatusPage = ({ error }: { error: any }) => {
           </p>
           <p className="text-xs text-muted-foreground/50">{error.error}</p>
         </>
-      )}
-
-      {error?.cause?.errno === -4073 && (
+      ) : error?.cause?.errno === -4073 ? (
         <>
           <p className="text-center  text-muted-foreground">
             Check your internet connection
           </p>
           <p className="text-xs text-muted-foreground/50">{error.error}</p>
         </>
+      ) : (
+        <p className="text-center  text-muted-foreground">
+          Something went wrong
+        </p>
       )}
 
       <Button
         variant={"secondary"}
         onClick={() => {
-          startTransition(async() => {
-            const res = await logout()
-            if(res.error) {
-                toast.error(res.error)
+          startTransition(async () => {
+            const res = await logout();
+            if (res.error) {
+              toast.error(res.error);
             } else {
-                toast.success(res.success)
-                router.push('/')
+              toast.success(res.success);
+              router.push("/");
             }
-          })
+          });
         }}
         disabled={isPending}
       >

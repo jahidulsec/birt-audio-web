@@ -18,9 +18,9 @@ const Logo = ({ logoTextColor }: { logoTextColor?: string }) => {
   );
 };
 
-const LogoImage = () => {
+const LogoImage = ({className}: {className?:string}) => {
   return (
-    <div className="relative w-14 aspect-square">
+    <div className={cn("relative aspect-square w-14", className)}>
       <Image
         src={"/icons/adaptive-icon.png"}
         fill

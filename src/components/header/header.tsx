@@ -6,7 +6,13 @@ import Back from "../icons/Back";
 import { LogoImage } from "../logo/logo";
 import { useRouter } from "next-nprogress-bar";
 
-const HeaderWithBack = ({ title }: { title: string }) => {
+const HeaderWithBack = ({
+  title,
+  showIcon = true,
+}: {
+  title: string;
+  showIcon?: boolean;
+}) => {
   const router = useRouter();
 
   return (
@@ -18,10 +24,11 @@ const HeaderWithBack = ({ title }: { title: string }) => {
         </Button>
         <h1 className="text-xl font-Semibold">{title}</h1>
       </div>
-
-      <button onClick={() => router.push("/profile")}>
-        <LogoImage />
-      </button>
+      {showIcon && (
+        <button onClick={() => router.push("/profile")}>
+          <LogoImage />
+        </button>
+      )}
     </header>
   );
 };
