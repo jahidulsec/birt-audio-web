@@ -1,5 +1,6 @@
 import { HeaderWithBack } from "@/components/header/header";
 import { ErrorStatusPage } from "@/components/status/error-status";
+import { NoData } from "@/components/status/no-data";
 import { HeroSection } from "@/features/playlist/components/hero-section";
 import { PlaylistSection } from "@/features/playlist/components/playlist-section";
 import { getPlaylist } from "@/features/playlist/db/playlist";
@@ -34,11 +35,15 @@ export default async function Playlist({
     <div>
       <HeaderWithBack title="Playlist" />
       <main className="flex flex-col gap-6 px-4 sm:px-0 container mx-auto">
-        {data.length > 0 && (
+        {data.length > 0 ? (
           <>
             <HeroSection imgUrl={data?.[0].place.imgUrl} />
             <PlaylistSection data={data} />
           </>
+        ) : (
+          <div className=" pt-20">
+            <NoData />
+          </div>
         )}
         {/* {err && <p>{JSON.stringify(err)}</p>} */}
         {err && <ErrorStatusPage error={err} />}
