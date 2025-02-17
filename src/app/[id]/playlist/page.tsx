@@ -1,4 +1,5 @@
 import { HeaderWithBack } from "@/components/header/header";
+import { ErrorStatusPage } from "@/components/status/error-status";
 import { HeroSection } from "@/features/playlist/components/hero-section";
 import { PlaylistSection } from "@/features/playlist/components/playlist-section";
 import { getPlaylist } from "@/features/playlist/db/playlist";
@@ -39,7 +40,8 @@ export default async function Playlist({
             <PlaylistSection data={data} />
           </>
         )}
-        {err && <p>{JSON.stringify(err)}</p>}
+        {/* {err && <p>{JSON.stringify(err)}</p>} */}
+        {err && <ErrorStatusPage error={err} />}
       </main>
     </div>
   );

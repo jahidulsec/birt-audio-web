@@ -1,7 +1,9 @@
 "use server";
 
 import { API_URL } from "@/lib/data";
+import { error } from "console";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import { z } from "zod";
 
 const authSchema = z.object({
@@ -66,6 +68,22 @@ export const login = async (prevState: unknown, formData: FormData) => {
       error: null,
       success: null,
       db: error.message,
+    };
+  }
+};
+
+export const logout = async () => {
+  try {
+    await cookies().delete("session");
+    return {
+      success: "Your are logged out successfully",
+      error: null,
+    };
+  } catch (error: any) {
+    console.error(error);
+    return {
+      success: null,
+      error: error.message,
     };
   }
 };
