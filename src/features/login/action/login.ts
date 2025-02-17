@@ -55,11 +55,17 @@ export const login = async (prevState: unknown, formData: FormData) => {
         success: null,
         db: null,
       };
+    } else if (error?.error) {
+      return {
+        error: null,
+        success: null,
+        db: error.error,
+      };
     }
     return {
       error: null,
       success: null,
-      db: error.error,
+      db: error.message,
     };
   }
 };

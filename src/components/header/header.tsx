@@ -16,7 +16,7 @@ const HeaderWithBack = ({ title }: { title: string }) => {
         <Button variant={"ghost"} size={"icon"}>
           <Back />
         </Button>
-        <h1 className="text-xl font-Semibold ">{title}</h1>
+        <h1 className="text-xl font-Semibold">{title}</h1>
       </div>
 
       <button onClick={() => router.push("/profile")}>

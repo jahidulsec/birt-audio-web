@@ -42,7 +42,10 @@ const Card = ({
   playSong: AudioPlaceLang | null;
 }) => {
   return (
-    <div data-state={playSong && playSong.id === audio.id} className="flex justify-between items-center gap-2 border hover:border-primary transition-colors duration-500 p-2 px-4 rounded-lg data-[state=true]:border-primary">
+    <div
+      data-state={playSong && playSong.id === audio.id}
+      className="flex justify-between items-center gap-2 border hover:border-primary transition-colors duration-500 p-2 px-4 rounded-lg data-[state=true]:border-primary"
+    >
       <div className="flex items-center gap-3">
         <div className="relative w-8 aspect-square">
           <Image

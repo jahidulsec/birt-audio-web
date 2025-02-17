@@ -13,6 +13,15 @@ import { AudioLines, Dot, X } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
 import { Separator } from "@/components/ui/separator";
 import { Drawer, DrawerContent, DrawerTitle } from "@/components/ui/drawer";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselDotButtons,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 const PlaylistSection = ({ data }: { data: AudioPlaceLang[] }) => {
   const [playSong, setPlaySong] = useState<AudioPlaceLang | null>(null);
@@ -82,31 +91,31 @@ const PlaylistSection = ({ data }: { data: AudioPlaceLang[] }) => {
           />
 
           {/* bottom player */}
-          <div className="sticky bottom-3 bg-accent rounded-xl flex items-center justify-between gap-2 p-4 w-full">
-            <div
-              className="flex items-center gap-3 flex-1 w-full grow"
-              onClick={() => {
-                setOpen(true);
-              }}
-            >
+          <div className="sticky bottom-3 bg-primary/65 backdrop-blur-sm rounded-xl flex items-center justify-between gap-2 p-4 w-full">
+            <div className="flex items-center gap-3 flex-1 w-full grow">
               {/* image */}
-              <div className="relative min-h-10 min-w-10 h-16 aspect-square rounded-xl overflow-hidden">
+              <div
+                className="relative bg-muted min-h-10 min-w-10 h-16 aspect-square rounded-xl overflow-hidden cursor-pointer"
+                onClick={() => {
+                  setOpen(true);
+                }}
+              >
                 <Image
                   src={playSong.imgUrl[0]}
                   fill
                   objectFit="cover"
-                  alt="pantheon"
+                  alt={playSong.language.name}
                 />
               </div>
 
               {/* details */}
               <div className="flex flex-col-reverse w-full gap-2">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 text-primary-foreground">
                   <h5 className="text-sm font-Semibold">
                     {playSong.place.name}
                   </h5>
                   <Dot />
-                  <h6 className="text-xs text-muted-foreground">
+                  <h6 className="text-xs text-primary-foreground">
                     {playSong.language.name}
                   </h6>
                 </div>
@@ -114,16 +123,16 @@ const PlaylistSection = ({ data }: { data: AudioPlaceLang[] }) => {
                 <div className="flex flex-col gap-2 w-full ">
                   {/* duration */}
                   <div className="flex w-full items-center justify-between">
-                    <p className="text-xs text-muted-foreground min-w-10">
+                    <p className="text-xs text-primary-foreground min-w-10">
                       {formatDuration(currentTime)}
                     </p>
-                    <p className="text-xs text-muted-foreground ml-3">
+                    <p className="text-xs text-primary-foreground ml-3">
                       {formatDuration(duration || 0)}
                     </p>
                   </div>
 
                   {/* controls */}
-                  <div className="flex w-full items-center">
+                  <div className="flex w-full items-center relative z-10">
                     {/* progress bar */}
                     <Slider
                       min={0}
@@ -156,7 +165,7 @@ const PlaylistSection = ({ data }: { data: AudioPlaceLang[] }) => {
             {/* close player button */}
             <Button
               size={"icon"}
-              variant={'outline'}
+              variant={"outline"}
               className="min-w-8 aspect-square hover:text-destructive ml-auto rounded-full absolute -top-4 -right-1 bg-muted"
               onClick={() => {
                 setPlaySong(null);
@@ -169,41 +178,51 @@ const PlaylistSection = ({ data }: { data: AudioPlaceLang[] }) => {
 
           {/* modal player */}
           <Drawer open={open} onOpenChange={setOpen}>
-            <DrawerContent>
-              <DrawerTitle className="flex items-center gap-3">
-                <AudioLines className="text-primary" /> Audio Player
+            <DrawerContent className="bg-primary/35 backdrop-blur-md border-transparent">
+              <DrawerTitle className="flex items-center gap-3 text-primary-foreground">
+                <AudioLines className="text-secondary" /> Audio Player
               </DrawerTitle>
 
               <div className="mt-10">
+                <Carousel
+                  opts={{
+                    loop: true,
+                  }}
+                  plugins={[
+                    Autoplay({
+                      delay: 5000,
+                    }),
+                  ]}
+                >
+                  <CarouselContent className="aspect-square w-1/3 md:w-1/6 mx-auto">
+                    {playSong.imgUrl.map((item, index) => (
+                      <CarouselItem key={index} className="basic pl-0">
+                        {/* image */}
+                        <div className="relative bg-muted w-full aspect-square rounded-xl overflow-hidden">
+                          <Image src={item} fill objectFit="cover" alt={item} />
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselDotButtons />
+                </Carousel>
                 <div className="flex items-center flex-col gap-3">
-                  {/* image */}
-                  <div className="relative w-[75%] aspect-square rounded-xl overflow-hidden">
-                    <Image
-                      src={playSong.imgUrl[0]}
-                      fill
-                      objectFit="cover"
-                      alt="pantheon"
-                    />
-                  </div>
-
                   {/* details */}
-                  <div className="flex flex-col text-center my-3">
+                  <div className="flex flex-col text-center my-3 text-primary-foreground">
                     <h5 className="text-lg font-Semibold">
                       {playSong.place.name}
                     </h5>
-                    <h6 className="text-sm text-muted-foreground">
-                      {playSong.language.name}
-                    </h6>
+                    <h6 className="text-sm">{playSong.language.name}</h6>
                   </div>
                 </div>
 
                 {/* duration */}
                 <div className="flex justify-between items-center gap-5 mb-4">
-                  <p className="text-xs text-muted-foreground min-w-10">
+                  <p className="text-xs text-primary-foreground min-w-10">
                     {formatDuration(currentTime)}
                   </p>
 
-                  <p className="text-xs text-muted-foreground ml-3">
+                  <p className="text-xs text-primary-foreground ml-3">
                     {formatDuration(duration || 0)}
                   </p>
                 </div>
