@@ -194,7 +194,7 @@ const PlaylistSection = ({ data }: { data: AudioPlaceLang[] }) => {
                     }),
                   ]}
                 >
-                  <CarouselContent className="aspect-square w-1/3 md:w-1/6 mx-auto">
+                  <CarouselContent className="aspect-square w-5/6 md:w-1/2 max-w-[20rem] mx-auto">
                     {playSong.imgUrl.map((item, index) => (
                       <CarouselItem key={index} className="basic pl-0">
                         {/* image */}

@@ -42,7 +42,15 @@ export const login = async (prevState: unknown, formData: FormData) => {
       throw data;
     }
 
-    await cookies().set("session", data.accessToken);
+    const expiresAt = new Date(Date.now() + 1 * 24 * 60 * 60 * 1000);
+
+    await cookies().set("session", data.accessToken, {
+      httpOnly: true,
+      secure: process.env.NEXT_PUBLIC_URL_SSL === "true",
+      expires: expiresAt,
+      sameSite: "lax",
+      path: "/",
+    });
 
     return {
       error: null,
