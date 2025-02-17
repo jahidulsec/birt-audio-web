@@ -18,6 +18,7 @@ import { useEffect } from "react";
 import { toast } from "sonner";
 import { useRouter } from "next-nprogress-bar";
 import { useParams } from "next/navigation";
+import Link from "next/link";
 
 export function LoginForm({
   className,
@@ -77,8 +78,8 @@ export function LoginForm({
         </CardContent>
       </Card>
       <div className="text-balance text-center text-xs [&_a]:underline [&_a]:underline-offset-4 [&_a]:hover:text-secondary text-primary-foreground ">
-        By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
-        and <a href="#">Privacy Policy</a>.
+        By clicking continue, you agree to our <Link href="/terms" target='_blank'>Terms of Service</Link>{" "}
+        and <Link href="/privacy-policy" target='_blank'>Privacy Policy</Link>.
       </div>
     </div>
   );

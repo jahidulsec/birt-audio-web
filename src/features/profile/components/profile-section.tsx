@@ -17,13 +17,13 @@ const linkList = [
     id: 1,
     title: "Privacy Policy",
     icon: <Policy />,
-    url: "",
+    url: "/privacy-policy",
   },
   {
     id: 2,
     title: "Terms of Service",
     icon: <Terms />,
-    url: "",
+    url: "/terms",
   },
 ];
 
