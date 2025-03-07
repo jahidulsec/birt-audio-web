@@ -83,7 +83,7 @@ const PlaylistSection = ({ data }: { data: AudioPlaceLang[] }) => {
       {playSong && (
         <>
           <audio
-            src={playSong.fileUrl}
+            src={`${process.env.NEXT_PUBLIC_API_URL}${playSong.fileUrl}`}
             controls
             autoPlay
             className="hidden"
