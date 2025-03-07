@@ -50,7 +50,7 @@ const Card = ({
         <div className="relative w-8 aspect-square">
           <Image
             fill
-            src={audio.language.imgUrl}
+            src={`${process.env.NEXT_PUBLIC_API_URL}${audio.language.imgUrl}`}
             alt={audio.language.name}
             objectFit="cover"
           />

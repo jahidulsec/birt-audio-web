@@ -101,7 +101,7 @@ const PlaylistSection = ({ data }: { data: AudioPlaceLang[] }) => {
                 }}
               >
                 <Image
-                  src={playSong.imgUrl[0]}
+                  src={`${process.env.NEXT_PUBLIC_API_URL}${playSong.imgUrl[0]}`}
                   fill
                   objectFit="cover"
                   alt={playSong.language.name}
@@ -199,7 +199,7 @@ const PlaylistSection = ({ data }: { data: AudioPlaceLang[] }) => {
                       <CarouselItem key={index} className="basic pl-0">
                         {/* image */}
                         <div className="relative bg-muted w-full aspect-square rounded-xl overflow-hidden">
-                          <Image src={item} fill objectFit="cover" alt={item} />
+                          <Image src={`${process.env.NEXT_PUBLIC_API_URL}${item}`} fill objectFit="cover" alt={item} />
                         </div>
                       </CarouselItem>
                     ))}

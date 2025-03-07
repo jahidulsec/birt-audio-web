@@ -35,15 +35,11 @@ export default async function Playlist({
     <div>
       <HeaderWithBack title="Playlist" />
       <main className="flex flex-col gap-6 px-4 sm:px-0 container mx-auto">
-        {!err && data && data.length > 0 ? (
+        {!err && data && data.length > 0 && (
           <>
             <HeroSection imgUrl={data?.[0].place.imgUrl} />
             <PlaylistSection data={data} />
           </>
-        ) : (
-          <div className=" pt-20">
-            <NoData />
-          </div>
         )}
         {err && <ErrorStatusPage error={err} />}
       </main>

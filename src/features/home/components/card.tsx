@@ -27,7 +27,7 @@ const Card = ({ place }: CardProps) => {
       {/* bg image */}
       <div className="absolute top-0 w-full -z-[1]">
         <div className="w-full aspect-video relative overflow-hidden">
-          <Image src={place.imgUrl} alt={place.name} fill objectFit="cover" />
+          <Image src={`${process.env.NEXT_PUBLIC_API_URL}${place.imgUrl}`} alt={place.name} fill objectFit="cover" />
         </div>
       </div>
 
